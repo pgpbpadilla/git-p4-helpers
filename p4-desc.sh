@@ -23,3 +23,4 @@ function files_from_p4_cl {
     done
 }
 
+files_from_p4_cl "$@"
