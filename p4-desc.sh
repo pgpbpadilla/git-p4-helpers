@@ -1,15 +1,23 @@
 function files_from_p4_cl {
 
     if [[ ($# > 2) || ($# < 1) ]]; then
-       echo "Wrong number of paramters..."
-       echo "Usage: $ cmd <cl> <prefix>"
-       echo "cl - is the P4 change list number"
-       echo "prefix - Prefix string to remove from the file URI"
-       return -1
+	echo -e "Invalid arguments: $# \n"
+
+	for arg in $@
+	do
+	    echo -e "\t$arg"
+	done
+	
+	echo -e "\nUsage: $ cmd <cl> <prefix>\n"
+	echo -e "\tcl - is the P4 change list number\n"
+	echo -e "\tprefix - Prefix string to remove from the file URI\n"
+	return -1
     fi
     
     CL=$1
     PREFIX=$2
+    echo "CL - $CL"
+    echo "PREFIX - $PREFIX"
 
     IFS=$'\n' # Make the new line the separator
 
@@ -18,8 +26,9 @@ function files_from_p4_cl {
     for file in $CL_FILES
     do
 	NO_SUFFIX=$(echo $file |  sed 's/#.*$//')
-	NO_PREFIX=${NO_SUFFIX//$PREFIX/./}
-	echo -e "${NO_PREFIX}"
+
+	echo "Replacing '${PREFIX}' with './' in '$NO_SUFFIX'"
+	echo -e ${NO_SUFFIX//"$PREFIX"/./}
     done
 }
 
