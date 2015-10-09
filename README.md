@@ -81,9 +81,9 @@ So the script `p4-desc.sh` cleans up the output so that we can pipe it into `rsy
 
 ```bash
 	$ ./p4-desc.sh <changelist> "... //path/to/depot/"
-	./path/to/depot/branch/path/to/file1.xml
-	./path/to/depot/branch/path/to/file2.xml
-	./path/to/depot/branch/path/to/file3.xml
+	./path/to/file1.xml
+	./path/to/file2.xml
+	./path/to/file3.xml
 ```
 
 At the end the whole process using the script looks like this:
