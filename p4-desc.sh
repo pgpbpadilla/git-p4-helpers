@@ -1,3 +1,7 @@
+# List files affected by the Perforce changelist with  number `p4cl`
+# - Remove the characters in `prefix` from each file in the list
+# - It also removes the trailing characters at the end of the name, e.g., # 123
+
 function files_from_p4_cl {
 
     if [[ ($# > 2) || ($# < 1) ]]; then
@@ -8,17 +12,15 @@ function files_from_p4_cl {
 	    echo -e "\t$arg"
 	done
 	
-	echo -e "\nUsage: $ cmd <cl> <prefix>\n"
-	echo -e "\tcl - is the P4 change list number\n"
+	echo -e "\nUsage: $ cmd <p4cl> <prefix>\n"
+	echo -e "\tp4cl - is the P4 changelist number\n"
 	echo -e "\tprefix - Prefix string to remove from the file URI\n"
 	return -1
     fi
     
     CL=$1
     PREFIX=$2
-    echo "CL - $CL"
-    echo "PREFIX - $PREFIX"
-
+    
     IFS=$'\n' # Make the new line the separator
 
     CL_FILES=$(p4 describe $CL | grep '^[.]\{3\}')
@@ -27,7 +29,6 @@ function files_from_p4_cl {
     do
 	NO_SUFFIX=$(echo $file |  sed 's/#.*$//')
 
-	echo "Replacing '${PREFIX}' with './' in '$NO_SUFFIX'"
 	echo -e ${NO_SUFFIX//"$PREFIX"/./}
     done
 }
