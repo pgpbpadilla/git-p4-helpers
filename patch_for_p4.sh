@@ -5,7 +5,7 @@ function patch_for_p4 {
     if [ "$#" -ne 1 ]; then
 	echo -e "\nIllegal number of parameters\n"
 	echo -e "\nUsage: \$ $0 <range>\n"
-	echo -e "\trange - a git revision range, e.g., <sha1>..<sha2>\n"
+	echo -e "\trange - a git revision range, e.g., abc123..abc124\n"
 	return -1
     fi
 

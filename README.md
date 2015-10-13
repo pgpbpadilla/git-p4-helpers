@@ -96,3 +96,30 @@ At the end the whole process using the script looks like this:
   * `$ ./p4-desc.sh <changelist> [<prefix>] | rsync -av --files-from=- $P4_DEPO/ $GIT_REPO/`
 
 **Caveats:** this probably won't work for files that have been removed, only in files added or modified.
+
+## Share changes from Git to Perforce
+
+The depot I work with is huge and for some reason when I try to submit using
+`$ git p4 submit` it takes forever just to get to the step where
+I edit my commit message.
+
+In most cases I end up:
+* creating a patch file for my changes
+* applying that patch in the Perforce depot
+* reconciling those files since P4 doesn't keep track of changes in the filesystem
+* preparing the CL and submitting using the visual client (P4V).
+
+Here's how you can do the same:
+
+```bash
+# Generate patch for revision range
+$ ./patch_for_p4.sh <abc123>..<abc124>
+Patch written to patch-123.diff
+List of changes written to changes-123.txt
+
+$ cd $P4_DEPOT
+$ git apply $GIT_REPO/patch-123.diff
+# Make Perforce aware of the changes to the files in the list
+$ ./p4_reconcile.sh $GIT_REPO/changes-123.txt
+```
+[TODO: Automatically create a P4 CL with the changes in the patch](https://github.com/pgpbpadilla/git-p4-helpers/issues/2)
