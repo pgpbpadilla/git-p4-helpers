@@ -10,7 +10,18 @@
 
 ## Scripts
 
+### Daily tasks
+
 * [`update-last-green.sh`](update-last-green.sh) - Adds/Updates the tag `last-green` to the Git commit associated with the Perforce Changelist number provided as argument. Updates the tag in the remote `origin`.
+
+### Sharing changes Git->P4
+
+* [`patch_for_p4.sh`](patch_for_p4.sh) - Given a Git revision range, generate a
+	patch file and a list of files affected by the patch.
+* [`p4_reconcile_files.sh`](p4_reconcile_files.sh) - Given a list of files, reconcile each
+file in the list using `p4 reconcile`.
+
+### Sharing changes P4->Git
 * [`p4-desc.sh`](p4-desc.sh) - List files affected by the Perforce changelist with  number `p4cl`.
 
 
@@ -47,7 +58,7 @@ Using the script this becomes:
 
 `$ ./update-last-green.sh 123123`
 
-## List files affected in a Perforce changelist
+## Sharing changes P4->Git
 
 Many times I'm pairing with someone but for some reason they need to share some changes with me but they don't use Git.
 So after lecturing them I ask them to shelve their changes so I can get them and apply them to my Git repo.
