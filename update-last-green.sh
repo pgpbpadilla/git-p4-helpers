@@ -28,19 +28,25 @@ function update_last_green {
     if [ -n "$(git tag --list | grep last-green)" ]; then
 	# Delete local tag
 	git tag -d last-green
+	# Create updated tag
+	git tag last-green ${SHA1}
     fi
 
     # Check if the tag is in the remote
     if [ -n "$(git ls-remote --tags origin | grep last-green)" ]; then
 	# Delete from remote
-	git push origin --delete last-green
+	if ! git push origin --delete last-green; then
+	    echo "Failed to delete remote tag: last-green"
+	    return -2
+	fi
+	
+        # Push it to the remote
+	if ! git push origin last-green; then
+	    echo "Failed to push tag: last-green to remote"
+	    return -3
+	fi
     fi
 
-    # Create updated tag
-    git tag last-green ${SHA1}
-    # Push it to the remote
-    git push origin last-green
-    
     return 0
 }
 
