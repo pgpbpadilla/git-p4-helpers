@@ -25,6 +25,7 @@ function update_last_green {
     echo "Commit ${SHA1} found for P4 CL: $1"
 
     # Make sure we delete the old tag locally
+    echo "Updating local tag ..."
     if [ -n "$(git tag --list | grep last-green)" ]; then
 	# Delete local tag
 	git tag -d last-green
@@ -33,18 +34,23 @@ function update_last_green {
     fi
 
     # Check if the tag is in the remote
+    echo "Trying to update tags on remote..."
     if [ -n "$(git ls-remote --tags origin | grep last-green)" ]; then
 	# Delete from remote
+	echo "Trying to delete old tag from remote..."
 	if ! git push origin --delete last-green; then
 	    echo "Failed to delete remote tag: last-green"
 	    return -2
 	fi
 	
         # Push it to the remote
+	echo "Trying to push newer tag to remote..."
 	if ! git push origin last-green; then
 	    echo "Failed to push tag: last-green to remote"
 	    return -3
 	fi
+    else
+	echo "Nothing to update on the remote."
     fi
 
     return 0
