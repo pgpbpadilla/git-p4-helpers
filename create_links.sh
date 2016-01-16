@@ -1,9 +1,9 @@
 function create_links {
 
     if [ "$#" -ne 1 ]; then
-	echo -ev "\nIllegal number of parameters\n"
-	echo -e "\nUsage: \$ $0 <target-path>\n"
-	return -1
+	      echo -e "\nIllegal number of parameters\n"
+	      echo -e "\nUsage: \$ $0 <target-path>\n"
+	      return -1
     fi
     
     local TGT_DIR=$1
