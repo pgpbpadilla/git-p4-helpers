@@ -47,7 +47,7 @@ As I learn move about this workflow I have written a few scripts that save me so
 ## My setup
 
 * Clone this repo into my `~/bin` directory
-* I create symbolic links (`ln -s` or use [`create_links.sh`](create_links.sh) for each of the scripts but with shorter names so I won't have to type as much, did I mention I'm lazy?
+* I create symbolic links (`ln -s` or use [`create_links.sh`](create_links.sh)) for each of the scripts but with shorter names so I won't have to type as much, did I mention I'm lazy?
 
 ## Use cases
 
