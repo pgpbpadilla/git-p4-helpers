@@ -22,8 +22,21 @@
 file in the list using `p4 reconcile`.
 
 ### Sharing changes P4->Git
+
 * [`p4-desc.sh`](p4-desc.sh) - List files affected by the Perforce changelist with  number `p4cl`.
 
+### Creating symlinks for scripts
+
+* [`create_links.sh`](create-links.sh) - Creates symlinks at the specified location. I place them at `~/bin`, e.g., 
+
+```bash
+$ ./create_links.sh ~/bin
+$ ls -la ~/bin
+ green-up -> update-last-green.sh
+ p4-desc -> p4-desc.sh
+ p4-patch -> patch_for_p4.sh
+ p4-recon -> p4_reconcile_files.sh
+```
 
 # Long description
 
@@ -34,12 +47,7 @@ As I learn move about this workflow I have written a few scripts that save me so
 ## My setup
 
 * Clone this repo into my `~/bin` directory
-* I create symbolic links (`ln -s`) for each of the scripts but with shorter names so I won't have to type as much, did I mention I'm lazy?
-
-	```bash
-	p4-desc -> git-p4-helpers/p4-desc.sh
-	green-up -> git-p4-helpers/update-last-green.sh
-	```
+* I create symbolic links (`ln -s` or use [`create_links.sh`](create_links.sh) for each of the scripts but with shorter names so I won't have to type as much, did I mention I'm lazy?
 
 ## Use cases
 
