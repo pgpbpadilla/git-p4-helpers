@@ -145,7 +145,7 @@ $ ./p4_reconcile.sh $GIT_REPO/changes-123.txt
 
 # References
 
-Here are some of the documents that helped me get it all working. Muchas Gracas!
+Here are some of the documents that helped me get it all working. Muchas Gracias!
 
 * [Git-P4 Workflow](https://developer.atlassian.com/blog/2015/01/work-with-git-and-perforce/)
 * [Git Internals: the Refspec](https://git-scm.com/book/en/v2/Git-Internals-The-Refspec)
